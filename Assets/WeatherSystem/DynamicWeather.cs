@@ -18,4 +18,20 @@ public class DynamicWeather : MonoBehaviour
     {
 
     }
+    void Sunny()
+    {
+
+    }
+    void Overcast()
+    {
+
+    }
+    void Thunderstorm()
+    {
+
+    }
+    void Rainy()
+    {
+
+    }
 }

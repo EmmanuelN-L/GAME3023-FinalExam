@@ -1,0 +1,13 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "New Weather State", menuName = "WeatherSystem")]
+public class WeatherState : ScriptableObject
+{
+
+    public string WeatherName;
+    public string description;
+    public ParticleSystem WeatherEffects;
+    public AudioClip SoundClip;
+}

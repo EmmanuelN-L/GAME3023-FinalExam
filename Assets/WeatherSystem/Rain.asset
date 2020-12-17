@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ff29c38248bae4d839f28d79de17d3, type: 3}
+  m_Name: Rain
+  m_EditorClassIdentifier: 
+  WeatherName: Rainy
+  description: It's raining
+  WeatherEffects: {fileID: 5056951705168689864, guid: b2f3511f2f65c45428b60588d98440e1, type: 3}
+  SoundClip: {fileID: 8300000, guid: b7b7292d2122d6d479a2c34401047d4c, type: 3}
