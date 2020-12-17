@@ -9,17 +9,16 @@ public class WeatherDisplay : MonoBehaviour
 
     public Text WeatherNameText;
 
-    public ParticleSystem WeatherParticleSys;
+    //public ParticleSystem WeatherParticleSys;
 
     
     // Start is called before the first frame update
     void Start()
     {
         WeatherNameText.text = weatherState.WeatherName;
-        WeatherParticleSys = weatherState.WeatherEffects;
-        gameObject.AddComponent<ParticleSystem>();
+        //WeatherParticleSys = weatherState.WeatherEffects;
+       // gameObject.AddComponent<ParticleSystem>();
         var ps = GetComponent<ParticleSystem>();
-        ps.emissionRate = weatherState.WeatherEffects.emissionRate; 
         var As = GetComponent<AudioSource>();
 
         As.clip = weatherState.SoundClip;
@@ -27,9 +26,16 @@ public class WeatherDisplay : MonoBehaviour
         
     }
 
-    void WeatherChange(WeatherState ws)
+    public void WeatherChange(WeatherState ws)
     {
+        var As = GetComponent<AudioSource>(); 
+        As.Stop();
+        weatherState = ws;
+        WeatherNameText.text = weatherState.WeatherName;
 
+        
+        As.clip = weatherState.SoundClip;
+        As.Play();
     }
 
 
