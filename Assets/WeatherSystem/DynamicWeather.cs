@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DynamicWeather : MonoBehaviour
 {
+    public WeatherState currentState;
     public WeatherState RainState;
     public WeatherState SunnyState;
     public WeatherState ThunderstormState;
@@ -15,13 +16,14 @@ public class DynamicWeather : MonoBehaviour
     public float RainEmissionRate;
     float timePassed;
     GameObject WeatherDisplay;
-    //WeatherDisplay wd;
-    bool weatherChange = false;
+
+    int randNum;
     
     public Text Timetext;
     
     void Start()
     {
+        currentState = SunnyState;
         WeatherDisplay = GameObject.FindGameObjectWithTag("WeatherDisplay");
         emissionModule = rain.emission;
     }
@@ -30,34 +32,125 @@ public class DynamicWeather : MonoBehaviour
     {
         timePassed += Time.smoothDeltaTime;
         Timetext.text ="Time Passed: " +  timePassed.ToString();
-        //Debug.Log(eRate);
-
-        if(timePassed >= 5 && !weatherChange)
+        if (timePassed >= 15)
         {
-            
-            Rainy();
-            weatherChange = true;
+            WeatherPicker();
+            timePassed = 0;
         }
+        //Debug.Log(eRate);        
     }
+
+    void WeatherPicker()
+    {   
+            //If in sunny state
+            if (currentState == SunnyState)
+            {
+                randNum = Random.Range(0, 100);
+                //Sunny state
+                if (randNum <= 40)
+                {
+                    //stay in sunny state
+                    Debug.Log("Staying in sunny state");
+                }
+                else //Go to overcast state
+                {
+                    Debug.Log("Going to overcast state");
+                    Overcast();
+                }
+            }    
+            //If in overcast state
+            if(currentState == OvercastState)
+            {
+                randNum = Random.Range(0, 100);
+                if (randNum <=33)
+                {
+                    //stay in overcast state
+                    Debug.Log("Staying in overcast state");
+                }
+                else if (randNum >33 && randNum<=66)
+                {
+                    //Go to sunny state
+                    Debug.Log("Going to sunny state");
+                    Sunny();
+                }
+                else
+                {
+                    //Go to Rain state
+                    Debug.Log("Going to rain state");
+                    Rainy();
+                }
+            }
+            // If current state is rain state
+            if (currentState == RainState)
+            {
+                randNum = Random.Range(0, 100);
+                if (randNum <= 33)
+                {
+                    //stay in overcast state
+                    Debug.Log("Staying in rain state");
+                }
+                else if (randNum > 33 && randNum <= 66)
+                {
+                    //Go to overcast state
+                    Debug.Log("Going to overcast state");
+                    Overcast();
+                }
+                else
+                {
+                    //Go to thunderstorm state
+                    Debug.Log("Going to thunderstorm state");
+                    Thunderstorm();
+                }
+            }
+
+            //If in thunderstorm state
+            if (currentState == ThunderstormState)
+            {
+                randNum = Random.Range(0, 100);
+
+                if (randNum <= 25)
+                {
+                    //Stay in thunderstorm state
+                    Debug.Log("Staying in thunderstorm state");
+                }
+                else //Go to rain state
+                {
+                    Debug.Log("Going to rain state");
+                    Rainy();
+                }
+            }
+
+            timePassed = 0;
+        
+    }
+
+
+
+
+
     public void Sunny()
     {
+        currentState = SunnyState;
         WeatherDisplay.GetComponent<WeatherDisplay>().WeatherChange(SunnyState);
+        
     }
     public void Overcast()
     {
-        StartCoroutine(RainEmission(emissionModule, 100, 0, 5.0f));
-        rain.Stop();
+        currentState = OvercastState;
+        StartCoroutine(RainEmission(emissionModule, 100, 0, 3.0f));
         WeatherDisplay.GetComponent<WeatherDisplay>().WeatherChange(OvercastState);
     }
     public void Thunderstorm()
     {
+        currentState = ThunderstormState;
+        StartCoroutine(RainEmission(emissionModule, 100, 250, 3.0f));
         WeatherDisplay.GetComponent<WeatherDisplay>().WeatherChange(ThunderstormState);
     }
     public void Rainy()
     {
+        currentState = RainState;
         rain.Play();
         StartCoroutine(RainEmission(emissionModule, 0, 100, 5.0f));
-
         WeatherDisplay.GetComponent<WeatherDisplay>().WeatherChange(RainState);
     }
 
@@ -65,7 +158,7 @@ public class DynamicWeather : MonoBehaviour
     {
         //var start = em.rateOverTime;
         //var end = start + Mathf.Lerp(start, 100f, time);
-        var time = 0.0f;
+        float time = 0.0f;
 
         while(time < 1.0f)
         {

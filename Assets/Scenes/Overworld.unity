@@ -9024,6 +9024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f36ec780fa30c4192cef41f7aed81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
   RainState: {fileID: 11400000, guid: ba772c74595780f43839b2a4fcaae0b3, type: 2}
   SunnyState: {fileID: 11400000, guid: eeffabf072855b543b2e3f875da689db, type: 2}
   ThunderstormState: {fileID: 11400000, guid: aa069f9db6f6a524eb1672ff1aa5b717, type: 2}
@@ -9637,7 +9638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weatherState: {fileID: 11400000, guid: eeffabf072855b543b2e3f875da689db, type: 2}
   WeatherNameText: {fileID: 2080245960}
-  Sun: {fileID: 0}
 --- !u!4 &1405673881
 Transform:
   m_ObjectHideFlags: 0
@@ -13275,6 +13275,18 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5436759689254467702, guid: 66553958e0b66e7409dbf4efed725996, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6037736
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436759689254467702, guid: 66553958e0b66e7409dbf4efed725996, type: 3}
+      propertyPath: m_Color.g
+      value: 0.23638305
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436759689254467702, guid: 66553958e0b66e7409dbf4efed725996, type: 3}
+      propertyPath: m_Color.b
+      value: 0.23638305
+      objectReference: {fileID: 0}
     - target: {fileID: 5436759689254467703, guid: 66553958e0b66e7409dbf4efed725996, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2098403
@@ -13305,7 +13317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5436759689254467703, guid: 66553958e0b66e7409dbf4efed725996, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5436759689254467703, guid: 66553958e0b66e7409dbf4efed725996, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

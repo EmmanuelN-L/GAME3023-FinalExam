@@ -17,5 +17,5 @@ MonoBehaviour:
   WeatherEffects: {fileID: 5056951705168689864, guid: b2f3511f2f65c45428b60588d98440e1, type: 3}
   SoundClip: {fileID: 8300000, guid: b7b7292d2122d6d479a2c34401047d4c, type: 3}
   go: {fileID: 0}
-  lightColor: {x: 0, y: 0, z: 0}
-  lightIntensity: 0.3
+  lightColor: {x: 130, y: 130, z: 170}
+  lightIntensity: 1
