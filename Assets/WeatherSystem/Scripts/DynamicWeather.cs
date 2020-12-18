@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +10,9 @@ public class DynamicWeather : MonoBehaviour
     public WeatherState ThunderstormState;
     public WeatherState OvercastState;
     public ParticleSystem rain;
+    public ParticleSystem Cloud;
+    public ParticleSystem Cloud2;
+    public GameObject player;
     ParticleSystem.EmissionModule emissionModule;
 
     public float RainEmissionRate;
@@ -124,18 +126,19 @@ public class DynamicWeather : MonoBehaviour
         
     }
 
-
-
-
-
     public void Sunny()
     {
+
+        Cloud.Stop();
+        Cloud2.Stop();
         currentState = SunnyState;
         WeatherDisplay.GetComponent<WeatherDisplay>().WeatherChange(SunnyState);
         
     }
     public void Overcast()
     {
+        Cloud.Play();
+        Cloud2.Play();
         currentState = OvercastState;
         StartCoroutine(RainEmission(emissionModule, 100, 0, 3.0f));
         WeatherDisplay.GetComponent<WeatherDisplay>().WeatherChange(OvercastState);
@@ -148,13 +151,15 @@ public class DynamicWeather : MonoBehaviour
     }
     public void Rainy()
     {
+        //float cloudSpeed = 1.0f;        
+        //Cloud.transform.Translate(Vector3.Normalize(player.transform.position - transform.position) * cloudSpeed);
         currentState = RainState;
         rain.Play();
         StartCoroutine(RainEmission(emissionModule, 0, 100, 5.0f));
         WeatherDisplay.GetComponent<WeatherDisplay>().WeatherChange(RainState);
     }
 
-    IEnumerator RainEmission( ParticleSystem.EmissionModule em, float minEmission, float maxEmission, float TransitionTime)
+    IEnumerator RainEmission( ParticleSystem.EmissionModule emission, float minEmission, float maxEmission, float TransitionTime)
     {
         //var start = em.rateOverTime;
         //var end = start + Mathf.Lerp(start, 100f, time);
@@ -162,7 +167,7 @@ public class DynamicWeather : MonoBehaviour
 
         while(time < 1.0f)
         {
-            em.rateOverTime = Mathf.Lerp(minEmission, maxEmission, time);
+            emission.rateOverTime = Mathf.Lerp(minEmission, maxEmission, time);
             time = time + Time.deltaTime / TransitionTime;
             yield return null;
         }

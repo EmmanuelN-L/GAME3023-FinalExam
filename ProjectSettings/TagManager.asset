@@ -9,6 +9,7 @@ TagManager:
   - Rain
   - WeatherDisplay
   - WeatherController
+  - Clouds
   layers:
   - Default
   - TransparentFX

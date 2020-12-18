@@ -12,8 +12,6 @@ public class WeatherDisplay : MonoBehaviour
 
     private UnityEngine.Experimental.Rendering.Universal.Light2D Sun;
 
-    float timer;
-
     bool lightningEnabled;
     //public ParticleSystem WeatherParticleSys;
     // Start is called before the first frame update
@@ -28,10 +26,9 @@ public class WeatherDisplay : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        timer += Time.smoothDeltaTime;
-    }
+    //private void Update()
+    //{
+    //}
 
     public void WeatherChange(WeatherState ws)
     {
@@ -49,13 +46,6 @@ public class WeatherDisplay : MonoBehaviour
             Debug.Log("Lightning is enabled");
             lightningEnabled = true;
             StartCoroutine(LightningFlash());
-        }
-        else
-        {
-            Debug.Log("Lightning is not enabled");
-            Debug.Log("Lightning is not enabled");
-
-            lightningEnabled = false;
         }
     }
 
@@ -87,5 +77,9 @@ public class WeatherDisplay : MonoBehaviour
         Sun.intensity = 2.0f;
         yield return new WaitForSeconds(0.2f);
         Sun.intensity = 1.0f;
+        yield return new WaitForSeconds(3.0f);
+        if (lightningEnabled)
+            StartCoroutine(LightningFlash());
+
     }
 }
