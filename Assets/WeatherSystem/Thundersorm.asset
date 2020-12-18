@@ -16,3 +16,6 @@ MonoBehaviour:
   description: Boom
   WeatherEffects: {fileID: 0}
   SoundClip: {fileID: 8300000, guid: 28b905fc5e24e6f4d8cad85fe889863a, type: 3}
+  go: {fileID: 0}
+  lightColor: {x: 0, y: 0, z: 0}
+  lightIntensity: 0.2
