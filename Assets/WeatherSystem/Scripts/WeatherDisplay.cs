@@ -12,6 +12,8 @@ public class WeatherDisplay : MonoBehaviour
 
     private UnityEngine.Experimental.Rendering.Universal.Light2D Sun;
 
+    float timer;
+
     bool lightningEnabled;
     //public ParticleSystem WeatherParticleSys;
     // Start is called before the first frame update
@@ -26,6 +28,11 @@ public class WeatherDisplay : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        timer += Time.smoothDeltaTime;
+    }
+
     public void WeatherChange(WeatherState ws)
     {
         var As = GetComponent<AudioSource>(); 
@@ -37,7 +44,7 @@ public class WeatherDisplay : MonoBehaviour
         
         As.clip = weatherState.SoundClip;
         As.Play();
-        if(weatherState.name == "Thunder Storm")
+        if(weatherState.WeatherName == ("ThunderStorm"))
         {
             Debug.Log("Lightning is enabled");
             lightningEnabled = true;
@@ -45,6 +52,7 @@ public class WeatherDisplay : MonoBehaviour
         }
         else
         {
+            Debug.Log("Lightning is not enabled");
             Debug.Log("Lightning is not enabled");
 
             lightningEnabled = false;
@@ -72,11 +80,12 @@ public class WeatherDisplay : MonoBehaviour
     }
     IEnumerator LightningFlash()
     {
-        while (lightningEnabled) // this just equates to "repeat forever"
-        {
-            Sun.intensity = 3;
-            yield return new WaitForSeconds(5f);
-            Sun.intensity = 1;
-        }
+        Sun.intensity = 3.0f;
+        yield return new WaitForSeconds(0.3f);
+        Sun.intensity = 1.0f;
+        yield return new WaitForSeconds(0.2f);
+        Sun.intensity = 2.0f;
+        yield return new WaitForSeconds(0.2f);
+        Sun.intensity = 1.0f;
     }
 }

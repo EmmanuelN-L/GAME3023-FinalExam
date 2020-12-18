@@ -15,7 +15,7 @@ MonoBehaviour:
   WeatherName: Overcast
   description: 
   WeatherEffects: {fileID: 0}
-  SoundClip: {fileID: 8300000, guid: a05c0c23d8d4f7146911214f16bff11a, type: 3}
+  SoundClip: {fileID: 8300000, guid: 5c839eed8953bf44db303221f2abcaa1, type: 3}
   go: {fileID: 0}
   lightColor: {x: 79, y: 49, z: 106}
   lightIntensity: 1
