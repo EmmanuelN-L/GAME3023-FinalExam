@@ -29,4 +29,9 @@ public class ButtonBehaviour : MonoBehaviour
     {
         dynamicWeather.GetComponent<DynamicWeather>().Thunderstorm();
     }
+    public void turnOffWeatherChanger()
+    {
+        dynamicWeather.GetComponent<DynamicWeather>().weatherPicker = false;
+        
+    }
 }

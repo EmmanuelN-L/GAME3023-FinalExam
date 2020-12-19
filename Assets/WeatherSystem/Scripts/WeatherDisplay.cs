@@ -26,10 +26,6 @@ public class WeatherDisplay : MonoBehaviour
         
     }
 
-    //private void Update()
-    //{
-    //}
-
     public void WeatherChange(WeatherState ws)
     {
         var As = GetComponent<AudioSource>(); 
@@ -41,12 +37,14 @@ public class WeatherDisplay : MonoBehaviour
         
         As.clip = weatherState.SoundClip;
         As.Play();
-        if(weatherState.WeatherName == ("ThunderStorm"))
+        if (weatherState.WeatherName == ("ThunderStorm"))
         {
-            Debug.Log("Lightning is enabled");
+            //Debug.Log("Lightning is enabled");
             lightningEnabled = true;
             StartCoroutine(LightningFlash());
         }
+        else
+            lightningEnabled = false;
     }
 
     IEnumerator ColorChanger(float R, float G, float B,  float TransitionTime)
@@ -80,6 +78,8 @@ public class WeatherDisplay : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         if (lightningEnabled)
             StartCoroutine(LightningFlash());
+        else
+            lightningEnabled = false;
 
     }
 }
